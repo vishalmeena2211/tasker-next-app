@@ -1,7 +1,9 @@
 import { create } from 'zustand';
 import axios from 'axios';
 
-const BASE_URL = "http://localhost:5000/api/v1/";
+// const BASE_URL = "http://localhost:5000/api/v1/";
+const BASE_URL = "https://tasker-next-app.onrender.com/api/v1/";
+
 
 interface Task {
     _id: string;
