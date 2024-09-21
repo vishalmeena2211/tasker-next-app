@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(coockieparser());
 
 app.use(cors({
-  origin: ['http://localhost:3000',"https://tasker-next-app.vercel.app"],
+  origin: 'https://tasker-next-app.vercel.app/',
   credentials: true,
 }));
 

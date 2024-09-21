@@ -1,3 +1,4 @@
+"use client"
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import axios from 'axios';
@@ -16,7 +17,7 @@ export const useAuthStore = create(
             login: async (credentials) => {
                 set({ isLoading: true, error: null });
                 try {
-                    const response = await axios.post(BASE_URL + 'login', credentials);
+                    const response = await axios.post(BASE_URL + 'login', credentials,{withCredentials:true});
                     set({ user: response.data, isLoading: false });
                 } catch (error: any) {
                     set({ error: error.message, isLoading: false });
@@ -30,7 +31,7 @@ export const useAuthStore = create(
             signup: async (credentials) => {
                 set({ isLoading: true, error: null });
                 try {
-                    const response = await axios.post(BASE_URL + 'signup', credentials);
+                    const response = await axios.post(BASE_URL + 'signup', credentials,{withCredentials:true});
                     set({ user: response.data, isLoading: false });
                 } catch (error: any) {
                     set({ error: error.message, isLoading: false });
