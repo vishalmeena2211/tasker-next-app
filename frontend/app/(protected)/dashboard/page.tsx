@@ -3,6 +3,7 @@ import { ContentLayout } from "@/components/admin-panel/content-layout";
 import Dashboard from "./components/Dashboard";
 import { useAuthStore } from "@/hooks/use-auth-store";
 import { redirect } from "next/navigation";
+import TaskStoreInitializer from "@/hooks/use-task-store";
 
 export default function DashboardPage() {
 
@@ -12,6 +13,7 @@ export default function DashboardPage() {
     }
     return (
         <ContentLayout title='Dashboard' className='min-h-[70vh]'>
+            <TaskStoreInitializer />
             <Dashboard />
         </ContentLayout>
     );

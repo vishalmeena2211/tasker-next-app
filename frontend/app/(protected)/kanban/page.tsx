@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import Column from './components/Column'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 import { ContentLayout } from "@/components/admin-panel/content-layout";
-import { useTaskStore } from '@/hooks/use-task-store';
+import TaskStoreInitializer, { useTaskStore } from '@/hooks/use-task-store';
 import { useAuthStore } from '@/hooks/use-auth-store';
 import { redirect } from 'next/navigation';
 import { ColumnType, Task } from '@/lib/types';
@@ -112,6 +112,7 @@ export default function Page() {
     return (
         <ContentLayout title="Kanban Board" className='min-h-[70vh]'>
             <DragDropContext onDragEnd={onDragEnd}>
+            <TaskStoreInitializer/>
                 <div className="grid md:grid-cols-3 grid-cols-1 place-items-center gap-2 w-4/5 mx-auto py-40">
                     {Object.values(columns).map(col => (
                         <Column col={col} key={col.id} />

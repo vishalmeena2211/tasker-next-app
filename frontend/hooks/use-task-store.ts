@@ -1,12 +1,10 @@
-"use client"
+import { useEffect } from 'react';
 import { create } from 'zustand';
 import axios from 'axios';
 import { TaskStore } from '@/lib/types';
+import { useAuthStore } from './use-auth-store';
 
-// const BASE_URL = "http://localhost:5000/api/v1/";
 const BASE_URL = "https://tasker-next-app.onrender.com/api/v1/";
-
-
 
 export const useTaskStore = create<TaskStore>((set) => ({
     tasks: [],
@@ -79,5 +77,18 @@ export const useTaskStore = create<TaskStore>((set) => ({
     }
 }));
 
-// Fetch tasks when the store is initialized
-useTaskStore.getState().fetchTasks();
+// Component to handle authentication state changes
+const TaskStoreInitializer = () => {
+    const { user } = useAuthStore(); // Assuming useAuth provides the current user
+    const fetchTasks = useTaskStore((state) => state.fetchTasks);
+
+    useEffect(() => {
+        if (user) {
+            fetchTasks();
+        }
+    }, [user, fetchTasks]);
+
+    return null;
+};
+
+export default TaskStoreInitializer;
