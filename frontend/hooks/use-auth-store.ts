@@ -5,7 +5,7 @@ import axios from 'axios';
 import { AuthState } from '@/lib/types';
 
 // const BASE_URL = "http://localhost:5000/api/v1/";
-const BASE_URL = "https://tasker-next-app.onrender.com/api/v1/";
+const BASE_URL = "https://tasker-next-app.onrender.com/api/v1/"; 
 
 export const useAuthStore = create(
     persist<AuthState>(
