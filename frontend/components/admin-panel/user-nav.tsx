@@ -19,13 +19,17 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { LoggedInUser } from "@/lib/types";
+import { useAuthStore } from "@/hooks/use-auth-store";
 export function UserNav({
 	isOpen,
 	user,
 }: {
 	isOpen: boolean;
-	user: PrismaUser;
+	user: LoggedInUser;
 }) {
+
+	const { logout } = useAuthStore();
 	return (
 		<>
 			<div className='flex items-end w-full grow'>
@@ -77,7 +81,7 @@ export function UserNav({
 									<DropdownMenuSeparator />
 									<DropdownMenuItem
 										className='hover:cursor-pointer'
-									// onClick={() => signOut()}
+										onClick={() => logout()}
 									>
 										<LogOut className='mr-3 w-4 h-4 text-muted-foreground' />
 										Sign out

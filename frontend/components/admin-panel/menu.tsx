@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Ellipsis, Plus } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { getMenuList } from "@/lib/menu-list";
 import { Button } from "@/components/ui/button";
@@ -14,10 +14,12 @@ import {
 	TooltipProvider,
 } from "@/components/ui/tooltip";
 import { UserNav } from "./user-nav";
-import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { useTaskStore } from "@/hooks/use-task-store";
+import { useAuthStore } from "@/hooks/use-auth-store";
+import { LoggedInUser } from "@/lib/types";
 
 interface MenuProps {
 	isOpen: boolean | undefined;
@@ -25,9 +27,8 @@ interface MenuProps {
 
 export function Menu({ isOpen }: MenuProps) {
 	const { addTask } = useTaskStore();
-	const router = useRouter();
 	const pathname = usePathname();
-	const user = null;
+	const { user } = useAuthStore();
 	const menuList = getMenuList(pathname, user?.id || "");
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const [newTask, setNewTask] = useState({ title: "", description: "", dueDate: null, status: "", priority: "" });
@@ -106,7 +107,7 @@ export function Menu({ isOpen }: MenuProps) {
 				))}
 			</div>
 
-			<UserNav isOpen={isOpen || false} user={user as User} />
+			<UserNav isOpen={isOpen || false} user={user as LoggedInUser} />
 
 			<Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
 				<DialogContent>
