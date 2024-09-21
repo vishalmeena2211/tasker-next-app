@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
 import Task from '../models/taskModel';
+import User from '../models/userModel';
+import { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
 // Get all tasks for a specific user
 export const getAllTasks = async (req: Request, res: Response): Promise<void> => {
@@ -31,9 +34,11 @@ export const getTaskById = async (req: Request, res: Response): Promise<void> =>
 export const createTask = async (req: Request, res: Response): Promise<void> => {
     try {
         //@ts-ignore
-        const newTask = new Task({ ...req.body, userId: req.user.id });
-        const savedTask = await newTask.save();
-        res.status(201).json(savedTask);
+        const newTask = await Task.create({ ...req.body, userId: req.user.id });
+        //@ts-ignore
+        const user = await User.findById(req.user.id);
+        user?.tasks.push(newTask._id as unknown as mongoose.Schema.Types.ObjectId);
+        res.status(201).json(newTask);
     } catch (error) {
         res.status(500).json({ message: 'Server Error', error });
     }
