@@ -16,7 +16,7 @@ The backend is developed using [Express](https://expressjs.com/) and [TypeScript
 
 Watch the video demo of Tasker:
 
-[![Tasker Video Demo](https://res.cloudinary.com/dc7entfb0/video/upload/f_auto:video,q_auto/v1/Assessment/gyg5ch59frfcvjmg1kni)
+https://github.com/user-attachments/assets/6b182cfd-aa48-4c2f-a9fc-d538c2ad30e7
 
 ### Photo Demos
 
