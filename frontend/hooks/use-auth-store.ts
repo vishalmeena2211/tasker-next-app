@@ -4,16 +4,19 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 import axios from 'axios';
 import { AuthState } from '@/lib/types';
 
+// Base URL for the API endpoints
 // const BASE_URL = "http://localhost:5000/api/v1/";
 const BASE_URL = "https://tasker-next-app.onrender.com/api/v1/";
 
+// Create a Zustand store with persistence
 export const useAuthStore = create(
     persist<AuthState>(
         (set) => ({
-            user: null,
-            isLoading: false,
-            error: null,
+            user: null, // Initial state for user
+            isLoading: false, // Initial state for loading status
+            error: null, // Initial state for error
 
+            // Login function
             login: async (credentials) => {
                 set({ isLoading: true, error: null });
                 try {
@@ -24,10 +27,12 @@ export const useAuthStore = create(
                 }
             },
 
+            // Logout function
             logout: () => {
                 set({ user: null });
             },
 
+            // Signup function
             signup: async (credentials) => {
                 set({ isLoading: true, error: null });
                 try {
@@ -39,8 +44,8 @@ export const useAuthStore = create(
             },
         }),
         {
-            name: 'authStore',
-            storage: createJSONStorage(() => localStorage),
+            name: 'authStore', // Name of the storage key
+            storage: createJSONStorage(() => localStorage), // Use localStorage for persistence
         }
     )
 );

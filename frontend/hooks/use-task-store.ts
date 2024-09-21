@@ -4,13 +4,17 @@ import axios from 'axios';
 import { TaskStore } from '@/lib/types';
 import { useAuthStore } from './use-auth-store';
 
+// Base URL for the API endpoints
+// const BASE_URL = "http://localhost:5000/api/v1/";
 const BASE_URL = "https://tasker-next-app.onrender.com/api/v1/";
 
+// Create a Zustand store for task management
 export const useTaskStore = create<TaskStore>((set) => ({
-    tasks: [],
-    isLoading: false,
-    error: null,
+    tasks: [], // Initial state for tasks
+    isLoading: false, // Initial loading state
+    error: null, // Initial error state
 
+    // Fetch tasks from the API
     fetchTasks: async () => {
         set({ isLoading: true });
         try {
@@ -21,6 +25,7 @@ export const useTaskStore = create<TaskStore>((set) => ({
         }
     },
 
+    // Add a new task to the API
     addTask: async (task) => {
         set({ isLoading: true });
         try {
@@ -34,6 +39,7 @@ export const useTaskStore = create<TaskStore>((set) => ({
         }
     },
 
+    // Update an existing task in the API
     updateTask: async (id, updatedTask) => {
         set({ isLoading: true });
         try {
@@ -49,6 +55,7 @@ export const useTaskStore = create<TaskStore>((set) => ({
         }
     },
 
+    // Delete a task from the API
     deleteTask: async (id) => {
         set({ isLoading: true });
         try {
@@ -61,6 +68,8 @@ export const useTaskStore = create<TaskStore>((set) => ({
             set({ error: (error as Error).message, isLoading: false });
         }
     },
+
+    // Change the status of a task in the API
     changeTaskStatus: async (id, status) => {
         set({ isLoading: true });
         try {
@@ -79,12 +88,12 @@ export const useTaskStore = create<TaskStore>((set) => ({
 
 // Component to handle authentication state changes
 const TaskStoreInitializer = () => {
-    const { user } = useAuthStore(); // Assuming useAuth provides the current user
+    const { user } = useAuthStore(); // Get the current user from the auth store
     const fetchTasks = useTaskStore((state) => state.fetchTasks);
 
     useEffect(() => {
         if (user) {
-            fetchTasks();
+            fetchTasks(); // Fetch tasks when the user is authenticated
         }
     }, [user, fetchTasks]);
 

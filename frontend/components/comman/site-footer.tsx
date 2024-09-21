@@ -15,7 +15,7 @@ export function SiteFooter() {
 					<div className='flex items-center gap-4'>
 						<p className='max-w-xs'>
 							Made by Vishal Meena. Follow me on
-							<a href='https://github.com/vishalmeena111' className='text-purple-500'> GitHub</a> and
+							<a href='https://github.com/vishalmeena2211' className='text-purple-500'> GitHub</a> and
 							<a href='https://twitter.com/vishalmeena111' className='text-purple-500'> Twitter</a>.
 						</p>
 					</div>

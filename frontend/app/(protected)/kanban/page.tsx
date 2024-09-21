@@ -9,10 +9,11 @@ import { redirect } from 'next/navigation';
 import { ColumnType, Task } from '@/lib/types';
 
 export default function Page() {
-    const { user } = useAuthStore();
-    const tasks = useTaskStore((state) => state.tasks);
-    const { changeTaskStatus } = useTaskStore();
+    const { user } = useAuthStore(); // Get the current user from the auth store
+    const tasks = useTaskStore((state) => state.tasks); // Get tasks from the task store
+    const { changeTaskStatus } = useTaskStore(); // Function to change task status
 
+    // Function to map tasks to their respective columns based on status
     const mapTasksToColumns = (tasks: Task[]) => {
         const columns: {
             [key: string]: ColumnType;
@@ -40,12 +41,13 @@ export default function Page() {
         return columns;
     };
 
-    const [columns, setColumns] = useState(mapTasksToColumns(tasks));
+    const [columns, setColumns] = useState(mapTasksToColumns(tasks)); // Initialize columns state
 
     useEffect(() => {
-        setColumns(mapTasksToColumns(tasks));
+        setColumns(mapTasksToColumns(tasks)); // Update columns when tasks change
     }, [tasks]);
 
+    // Handle the drag and drop event
     const onDragEnd = ({ source, destination }: DropResult) => {
         if (destination === undefined || destination === null) return null;
 
@@ -70,7 +72,7 @@ export default function Page() {
                 list: newList
             };
 
-            setColumns(state => ({ ...state, [newCol.id]: newCol }));
+            setColumns(state => ({ ...state, [newCol.id]: newCol })); // Update state for same column drag
             return null;
         } else {
             const newStartList = start.list.filter(
@@ -100,22 +102,22 @@ export default function Page() {
                 ...state,
                 [newStartCol.id]: newStartCol,
                 [newEndCol.id]: newEndCol
-            }));
+            })); // Update state for different column drag
             return null;
         }
     };
 
     if (!user) {
-        return redirect("/login");
+        return redirect("/login"); // Redirect to login if user is not authenticated
     }
 
     return (
         <ContentLayout title="Kanban Board" className='min-h-[70vh]'>
             <DragDropContext onDragEnd={onDragEnd}>
-            <TaskStoreInitializer/>
+                <TaskStoreInitializer />
                 <div className="grid md:grid-cols-3 grid-cols-1 place-items-center gap-2 w-4/5 mx-auto py-40">
                     {Object.values(columns).map(col => (
-                        <Column col={col} key={col.id} />
+                        <Column col={col} key={col.id} /> // Render each column
                     ))}
                 </div>
             </DragDropContext>

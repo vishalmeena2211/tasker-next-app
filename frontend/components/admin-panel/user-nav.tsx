@@ -44,7 +44,7 @@ export function UserNav({
 											className='relative rounded-full w-8 h-8 mx-auto'
 										>
 											<Avatar className='w-8 h-8'>
-												<AvatarImage src='#' alt='Avatar' />
+												<AvatarImage src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_kSSoomJ9hiFXmiF2RdZlwx72Y23XsT6iwQ&s' alt='Avatar' />
 												<AvatarFallback className='border-2 border-gray-300 bg-transparent'>
 													{user?.name?.charAt(0).toUpperCase()}
 												</AvatarFallback>
@@ -54,7 +54,7 @@ export function UserNav({
 										<Button variant='outline' className='relative w-full h-14'>
 											<div className='flex items-center gap-2 w-full'>
 												<Avatar className='w-10 h-10'>
-													<AvatarImage src='#' alt='Avatar' />
+													<AvatarImage src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_kSSoomJ9hiFXmiF2RdZlwx72Y23XsT6iwQ&s' alt='Avatar' />
 													<AvatarFallback className='bg-transparent'>
 														{user?.name?.charAt(0).toUpperCase()}
 													</AvatarFallback>
@@ -72,7 +72,7 @@ export function UserNav({
 								<DropdownMenuContent className='w-56' align='end' forceMount>
 									<DropdownMenuGroup>
 										<DropdownMenuItem className='hover:cursor-pointer' asChild>
-											<Link href='/profile' className='flex items-center'>
+											<Link href='#' className='flex items-center'>
 												<User className='mr-3 w-4 h-4 text-muted-foreground' />
 												Account
 											</Link>

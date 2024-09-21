@@ -32,8 +32,8 @@ To get started with the project, follow these steps:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/tasker-backend.git
-    cd tasker-backend
+    git clone https://github.com/vishalmeena2211/tasker-next-app.git
+    cd tasker-next-app/backend
     ```
 
 2. Install dependencies:

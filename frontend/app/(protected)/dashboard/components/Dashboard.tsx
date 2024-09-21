@@ -16,6 +16,7 @@ export default function Dashboard() {
     const [editingTask, setEditingTask] = useState<Task | null>(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
+    // Handle task creation
     const handleCreate = useCallback(() => {
         if (!newTask.title || !newTask.description || !newTask.dueDate || !newTask.status || !newTask.priority) {
             alert("Please fill all fields");
@@ -26,6 +27,7 @@ export default function Dashboard() {
         setIsDialogOpen(false);
     }, [newTask, addTask]);
 
+    // Handle task update
     const handleUpdate = useCallback(() => {
         if (editingTask) {
             updateTask(editingTask._id, editingTask);
@@ -34,15 +36,18 @@ export default function Dashboard() {
         }
     }, [editingTask, updateTask]);
 
+    // Handle task deletion
     const handleDelete = useCallback((id: string) => {
         deleteTask(id);
     }, [deleteTask]);
 
+    // Handle task editing
     const handleEdit = useCallback((task: Task) => {
         setEditingTask(task);
         setIsDialogOpen(true);
     }, []);
 
+    // Define table columns
     const columns: ColumnDef<Task>[] = [
         {
             accessorKey: "title",
@@ -116,6 +121,7 @@ export default function Dashboard() {
 
     return (
         <div className='mx-auto max-w-7xl'>
+            {/* Header with animation */}
             <motion.header
                 className='flex justify-between items-center mb-8'
                 initial={{ opacity: 0, y: -20 }}
@@ -130,8 +136,10 @@ export default function Dashboard() {
             <h3 className='font-semibold text-gray-900 text-xl dark:text-gray-100'>
                 Recent Tasks
             </h3>
+            {/* Table displaying tasks */}
             <ReusableTable data={tasks} columns={columns} />
 
+            {/* Dialog for creating/editing tasks */}
             <Dialog open={isDialogOpen} onOpenChange={(open) => {
                 setIsDialogOpen(open);
                 if (!open) setEditingTask(null);
@@ -144,6 +152,7 @@ export default function Dashboard() {
                     <DialogDescription>
 
                         <div className="space-y-4">
+                            {/* Input fields for task details */}
                             <Input
                                 type="text"
                                 placeholder="Task Name"

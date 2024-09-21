@@ -19,8 +19,8 @@ Make sure you have the following installed on your machine:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/your-repo-name.git
-    cd your-repo-name
+    git clone https://github.com/vishalmeena2211/tasker-next-app.git
+    cd tasker-next-app/frontend
     ```
 
 2. Install the dependencies:
@@ -57,9 +57,10 @@ Watch the video demo of Tasker:
 
 Here are some screenshots of Tasker in action:
 
-![Tasker Screenshot 1](path/to/screenshot1.png)
-![Tasker Screenshot 2](path/to/screenshot2.png)
-![Tasker Screenshot 3](path/to/screenshot3.png)
+![Tasker Screenshot 1](public\Screenshot (494).png)
+![Tasker Screenshot 2](public\Screenshot (495).png)
+![Tasker Screenshot 3](public\Screenshot (496).png)
+![Tasker Screenshot 4](public\Screenshot (497).png)
 
 ## Learn More
 

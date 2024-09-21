@@ -17,7 +17,7 @@ import { Label } from "@/components/ui/label"
 import { Loader2 } from "lucide-react"
 import { useAuthStore } from "@/hooks/use-auth-store"
 
-
+// Component for the login page
 export default function LoginPage() {
     const router = useRouter()
     const [user, setUser] = useState({
@@ -27,27 +27,26 @@ export default function LoginPage() {
     const [loading, setLoading] = useState(false)
     const { login, user: isLogedIn } = useAuthStore();
 
+    // Redirect to dashboard if user is already logged in
     useEffect(() => {
         if (isLogedIn) {
             router.push('/dashboard')
         }
     }, [isLogedIn])
 
+    // Function to handle login
     const onLogin = async () => {
-
         setLoading(true)
         try {
             await login(user)
-
         } catch (error: any) {
             console.log(error)
             // toast.error(error.message)
         }
         setLoading(false)
-
     }
 
-
+    // Render the login form
     return (
         <div className="min-h-screen flex flex-wrap flex-col items-center justify-center">
             <Card className="w-[300px] sm:w-[350px] bg-muted/20">
@@ -86,6 +85,5 @@ export default function LoginPage() {
                 </CardFooter>
             </Card>
         </div>
-
     )
 }

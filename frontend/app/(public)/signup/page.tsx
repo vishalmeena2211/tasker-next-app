@@ -17,7 +17,6 @@ import { Label } from "@/components/ui/label"
 import { Loader2 } from "lucide-react"
 import { useAuthStore } from "@/hooks/use-auth-store"
 
-
 export default function SignupPage() {
     const router = useRouter()
     const [user, setUser] = useState({
@@ -29,13 +28,14 @@ export default function SignupPage() {
     const [loading, setLoading] = useState(false);
     const { signup, user: isLogedIn } = useAuthStore()
 
-
+    // Redirect to dashboard if user is already logged in
     useEffect(() => {
         if (isLogedIn) {
             router.push('/dashboard')
         }
     }, [isLogedIn])
 
+    // Handle signup process
     const onSignup = async () => {
         setLoading(true)
         try {
@@ -46,7 +46,6 @@ export default function SignupPage() {
         }
         setLoading(false)
     }
-
 
     return (
         <div className="min-h-screen flex flex-wrap flex-col items-center justify-center">
@@ -77,7 +76,6 @@ export default function SignupPage() {
                             value={user.email}
                             onChange={(e) => setUser({ ...user, email: e.target.value })}
                         />
-
                     </div>
                     <div className="grid gap-2">
                         <Label htmlFor="password">Password</Label>
@@ -90,6 +88,7 @@ export default function SignupPage() {
                     </div>
                 </CardContent>
                 <CardFooter className="flex flex-col space-y-2">
+                    {/* Disable button if any field is empty */}
                     <Button className="w-full" disabled={user.name.length > 0 && user.email.length > 0 && user.password.length > 0 ? false : true} onClick={onSignup}>
                         {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Signup"}
                     </Button>

@@ -80,6 +80,7 @@ export function Navbar() {
 								>
 									Login <ArrowRight className='ml-1.5 w-5 h-5' />
 								</Link>
+								<ModeToggle />
 							</div>
 						) : (
 							<div className='flex items-center gap-4'>
