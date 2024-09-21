@@ -6,7 +6,7 @@ interface ITask {
     description?: string;
     status: 'To Do' | 'In Progress' | 'Completed';
     priority: 'Low' | 'Medium' | 'High';
-    user: Schema.Types.ObjectId;
+    userId: Schema.Types.ObjectId;
     dueDate?: Date;
 }
 
@@ -24,7 +24,7 @@ const taskSchema = new Schema<ITask>({
         enum: ['Low', 'Medium', 'High'],
         required: true
     },
-    user: { type: Schema.Types.ObjectId, ref: 'User' },
+    userId: { type: Schema.Types.ObjectId, ref: 'User' },
     dueDate: { type: Date }
 });
 

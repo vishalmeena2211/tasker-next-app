@@ -15,7 +15,7 @@ export const getAllTasks = async (req: Request, res: Response): Promise<void> =>
 // Get a single task by ID for a specific user
 export const getTaskById = async (req: Request, res: Response): Promise<void> => {
     try {
-        //@ts-ignore
+        // @ts-ignore
         const task = await Task.findOne({ _id: req.params.id, userId: req.user.id });
         if (!task) {
             res.status(404).json({ message: 'Task not found' });
