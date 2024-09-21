@@ -57,7 +57,7 @@ export const signIn = async (req: Request, res: Response) => {
         const token = jwt.sign(payload, process.env.JWT_SECRET || "", { expiresIn: '30d' });
 
         // Set token in cookie
-        res.cookie('token', token, { expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), httpOnly: true }).status(200).json({ message: 'Logged in successfully' });
+        res.cookie('token', token, { expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), httpOnly: true, secure: true, }).status(200).json({ message: 'Logged in successfully' });
 
     } catch (error) {
         res.status(500).json({ message: 'Server error', error });
