@@ -11,9 +11,9 @@ app.use(express.json());
 app.use(coockieparser());
 
 app.use(cors({
+  credentials: true,
   origin: 'https://tasker-next-app.vercel.app',
   // origin:"http://localhost:3000",
-  credentials: true,
 }));
 
 // Connect to MongoDB
