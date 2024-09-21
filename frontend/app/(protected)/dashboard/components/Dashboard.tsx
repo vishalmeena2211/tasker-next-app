@@ -9,6 +9,9 @@ import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, D
 import { useTaskStore } from "@/hooks/use-task-store";
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select";
 import { Task } from "@/lib/types";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
 
 export default function Dashboard() {
     const { tasks, addTask, updateTask, deleteTask } = useTaskStore();
@@ -119,6 +122,8 @@ export default function Dashboard() {
         },
     ];
 
+    console.log(newTask.dueDate);
+
     return (
         <div className='mx-auto max-w-7xl'>
             {/* Header with animation */}
@@ -167,13 +172,45 @@ export default function Dashboard() {
                                 onChange={(e) => editingTask ? setEditingTask({ ...editingTask, description: e.target.value }) : setNewTask({ ...newTask, description: e.target.value })}
                                 className="w-full p-2 border rounded"
                             />
-                            <Input
+                            {/* <Input
                                 type="date"
                                 placeholder="Due Date"
                                 value={editingTask ? editingTask.dueDate : newTask.dueDate || new Date()}
                                 onChange={(e) => editingTask ? setEditingTask({ ...editingTask, dueDate: new Date(e.target.value) }) : setNewTask({ ...newTask, dueDate: new Date(e.target.value) })}
                                 className="w-full p-2 border rounded"
-                            />
+                            /> */}
+                            <Popover>
+                                <PopoverTrigger asChild>
+                                    <Button variant="outline" className="w-full justify-start text-left">
+                                        {editingTask?.dueDate || newTask?.dueDate
+                                            ? format(editingTask?.dueDate || newTask?.dueDate, "PPP")
+                                            : "Pick a date"}
+                                    </Button>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-auto p-0">
+                                    <Calendar
+                                        mode="single"
+                                        selected={editingTask?.dueDate || newTask?.dueDate || new Date()}
+                                        onSelect={(date: Date | undefined) => {
+                                            if (!date) return; // Prevent null/undefined errors
+                                            const selectedDate = new Date(date);
+
+                                            if (editingTask) {
+                                                // Only update if the selected date is different
+                                                if (!editingTask.dueDate || editingTask.dueDate.getTime() !== selectedDate.getTime()) {
+                                                    setEditingTask({ ...editingTask, dueDate: selectedDate });
+                                                }
+                                            } else {
+                                                // Only update if the selected date is different
+                                                if (!newTask.dueDate || newTask.dueDate.getTime() !== selectedDate.getTime()) {
+                                                    setNewTask({ ...newTask, dueDate: selectedDate });
+                                                }
+                                            }
+                                        }}
+                                        initialFocus
+                                    />
+                                </PopoverContent>
+                            </Popover>
                             <Select
                                 value={editingTask ? editingTask.status : newTask.status || ""}
                                 onValueChange={(value) => editingTask ? setEditingTask({ ...editingTask, status: value }) : setNewTask({ ...newTask, status: value })}
