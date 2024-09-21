@@ -13,6 +13,7 @@ export const authenticateUser = (req: Request, res: Response, next: NextFunction
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET || '');
+        //@ts-ignore
         req.user = decoded;
         next();
     } catch (ex) {
@@ -22,6 +23,7 @@ export const authenticateUser = (req: Request, res: Response, next: NextFunction
 
 // Middleware to authorize user for task and user routes
 export const authorizeUser = (req: Request, res: Response, next: NextFunction) => {
+    //@ts-ignore
     const user = req.user;
 
     if (!user) {

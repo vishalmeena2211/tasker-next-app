@@ -4,6 +4,7 @@ import Task from '../models/taskModel';
 // Get all tasks for a specific user
 export const getAllTasks = async (req: Request, res: Response): Promise<void> => {
     try {
+        //@ts-ignore
         const tasks = await Task.find({ userId: req.user.id });
         res.status(200).json(tasks);
     } catch (error) {
@@ -14,6 +15,7 @@ export const getAllTasks = async (req: Request, res: Response): Promise<void> =>
 // Get a single task by ID for a specific user
 export const getTaskById = async (req: Request, res: Response): Promise<void> => {
     try {
+        //@ts-ignore
         const task = await Task.findOne({ _id: req.params.id, userId: req.user.id });
         if (!task) {
             res.status(404).json({ message: 'Task not found' });
@@ -28,6 +30,7 @@ export const getTaskById = async (req: Request, res: Response): Promise<void> =>
 // Create a new task for a specific user
 export const createTask = async (req: Request, res: Response): Promise<void> => {
     try {
+        //@ts-ignore
         const newTask = new Task({ ...req.body, userId: req.user.id });
         const savedTask = await newTask.save();
         res.status(201).json(savedTask);
@@ -40,6 +43,7 @@ export const createTask = async (req: Request, res: Response): Promise<void> => 
 export const updateTask = async (req: Request, res: Response): Promise<void> => {
     try {
         const updatedTask = await Task.findOneAndUpdate(
+            //@ts-ignore
             { _id: req.params.id, userId: req.user.id },
             req.body,
             { new: true }
@@ -57,6 +61,7 @@ export const updateTask = async (req: Request, res: Response): Promise<void> => 
 // Delete a task for a specific user
 export const deleteTask = async (req: Request, res: Response): Promise<void> => {
     try {
+        //@ts-ignore
         const deletedTask = await Task.findOneAndDelete({ _id: req.params.id, userId: req.user.id });
         if (!deletedTask) {
             res.status(404).json({ message: 'Task not found' });
