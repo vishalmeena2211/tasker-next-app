@@ -5,6 +5,7 @@ import {
     updateUser,
 } from "../controllers/userController";
 import {
+    changeStatus,
     createTask,
     deleteTask,
     getAllTasks,
@@ -29,5 +30,6 @@ router.get("/tasks/:id", authenticateUser, authorizeUser, getTaskById);
 router.post("/tasks", authenticateUser, authorizeUser, createTask);
 router.put("/tasks/:id", authenticateUser, authorizeUser, updateTask);
 router.delete("/tasks/:id", authenticateUser, authorizeUser, deleteTask);
+router.patch("/tasks/:id", authenticateUser, authorizeUser, changeStatus);
 
 export default router;

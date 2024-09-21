@@ -8,12 +8,11 @@ import { useAuthStore } from '@/hooks/use-auth-store';
 import { redirect } from 'next/navigation';
 import { ColumnType, Task } from '@/lib/types';
 
-
-
 export default function Page() {
-
     const { user } = useAuthStore();
     const tasks = useTaskStore((state) => state.tasks);
+    const { changeTaskStatus } = useTaskStore();
+
     const mapTasksToColumns = (tasks: Task[]) => {
         const columns: {
             [key: string]: ColumnType;
@@ -91,6 +90,11 @@ export default function Page() {
                 id: end.id,
                 list: newEndList
             };
+
+            const movedTask = start.list[source.index];
+
+            // Update the task status in the database
+            changeTaskStatus(movedTask._id, end.id);
 
             setColumns(state => ({
                 ...state,

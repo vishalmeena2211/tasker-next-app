@@ -19,7 +19,7 @@ export interface Task {
     _id: string;
     title: string;
     description?: string;
-    status: 'To Do' | 'In Progress' | 'Completed' ;
+    status: 'To Do' | 'In Progress' | 'Completed';
     priority: 'Low' | 'Medium' | 'High';
     dueDate?: Date;
 }
@@ -31,6 +31,7 @@ export interface TaskStore {
     fetchTasks: () => Promise<void>;
     addTask: (task: Omit<Task, '_id'>) => Promise<void>;
     updateTask: (id: string, updatedTask: Partial<Task>) => Promise<void>;
+    changeTaskStatus: (id: string, status: Task['status']) => Promise<void>;
     deleteTask: (id: string) => Promise<void>;
 }
 

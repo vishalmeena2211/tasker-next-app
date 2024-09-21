@@ -1,29 +1,12 @@
 "use client"
 import { create } from 'zustand';
 import axios from 'axios';
+import { TaskStore } from '@/lib/types';
 
 // const BASE_URL = "http://localhost:5000/api/v1/";
 const BASE_URL = "https://tasker-next-app.onrender.com/api/v1/";
 
 
-interface Task {
-    _id: string;
-    title: string;
-    description?: string;
-    status: 'To Do' | 'In Progress' | 'Completed';
-    priority: 'Low' | 'Medium' | 'High';
-    dueDate?: Date;
-}
-
-interface TaskStore {
-    tasks: Task[];
-    isLoading: boolean;
-    error: string | null;
-    fetchTasks: () => Promise<void>;
-    addTask: (task: Omit<Task, '_id'>) => Promise<void>;
-    updateTask: (id: string, updatedTask: Partial<Task>) => Promise<void>;
-    deleteTask: (id: string) => Promise<void>;
-}
 
 export const useTaskStore = create<TaskStore>((set) => ({
     tasks: [],
@@ -80,6 +63,20 @@ export const useTaskStore = create<TaskStore>((set) => ({
             set({ error: (error as Error).message, isLoading: false });
         }
     },
+    changeTaskStatus: async (id, status) => {
+        set({ isLoading: true });
+        try {
+            const response = await axios.patch(BASE_URL + `tasks/${id}`, { status }, { withCredentials: true });
+            set((state) => ({
+                tasks: state.tasks.map((task) =>
+                    task._id === id ? response.data : task
+                ),
+                isLoading: false,
+            }));
+        } catch (error) {
+            set({ error: (error as Error).message, isLoading: false });
+        }
+    }
 }));
 
 // Fetch tasks when the store is initialized
