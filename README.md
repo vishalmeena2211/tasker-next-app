@@ -10,6 +10,23 @@ The frontend of this project is built using [Next.js](https://nextjs.org/), a Re
 
 The backend is developed using [Express](https://expressjs.com/) and [TypeScript](https://www.typescriptlang.org/). Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications. TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
 
+## Demo
+
+### Video Demo
+
+Watch the video demo of Tasker:
+
+[![Tasker Video Demo](https://res.cloudinary.com/dc7entfb0/video/upload/f_auto:video,q_auto/v1/Assessment/gyg5ch59frfcvjmg1kni)
+
+### Photo Demos
+
+Here are some screenshots of Tasker in action:
+
+![Tasker Screenshot 1](https://res.cloudinary.com/dc7entfb0/image/upload/f_auto,q_auto/v1/Assessment/vdfuuvz180vr0m70d6ud)
+![Tasker Screenshot 2](https://res.cloudinary.com/dc7entfb0/image/upload/f_auto,q_auto/v1/Assessment/rdkxnsjv8f1uqkqsh1la)
+![Tasker Screenshot 3](https://res.cloudinary.com/dc7entfb0/image/upload/f_auto,q_auto/v1/Assessment/tafq16oauqbxwntgugmu)
+![Tasker Screenshot 4](https://res.cloudinary.com/dc7entfb0/image/upload/f_auto,q_auto/v1/Assessment/e1kcr2kajucwhn3wrbm8)
+
 ## Project Structure
 
 - **frontend/**: Contains the Next.js frontend code.

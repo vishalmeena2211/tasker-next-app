@@ -51,7 +51,7 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 Watch the video demo of Tasker:
 
-[![Tasker Video Demo](https://img.youtube.com/vi/your-video-id/0.jpg)](https://www.youtube.com/watch?v=your-video-id)
+[![Tasker Video Demo](https://res.cloudinary.com/dc7entfb0/video/upload/f_auto:video,q_auto/v1/Assessment/gyg5ch59frfcvjmg1kni)
 
 ### Photo Demos
 
