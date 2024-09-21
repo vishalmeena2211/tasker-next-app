@@ -76,8 +76,8 @@ export const deleteTask = async (req: Request, res: Response): Promise<void> => 
 // Change the task status
 export const changeStatus = async (req: Request, res: Response): Promise<void> => {
     try {
-        //@ts-ignore
         const updatedTask = await Task.findOneAndUpdate(
+            //@ts-ignore
             { _id: req.params.id, userId: req.user.id },
             { status: req.body.status },
             { new: true }
