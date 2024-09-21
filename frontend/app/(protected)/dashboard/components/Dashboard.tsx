@@ -170,7 +170,7 @@ export default function Dashboard() {
                             <Input
                                 type="date"
                                 placeholder="Due Date"
-                                value={editingTask ? editingTask.dueDate?.toString() : newTask.dueDate?.toString() || ""}
+                                value={editingTask ? editingTask.dueDate : newTask.dueDate || new Date()}
                                 onChange={(e) => editingTask ? setEditingTask({ ...editingTask, dueDate: new Date(e.target.value) }) : setNewTask({ ...newTask, dueDate: new Date(e.target.value) })}
                                 className="w-full p-2 border rounded"
                             />

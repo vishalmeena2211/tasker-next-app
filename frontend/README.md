@@ -57,10 +57,10 @@ Watch the video demo of Tasker:
 
 Here are some screenshots of Tasker in action:
 
-![Tasker Screenshot 1](public\Screenshot (494).png)
-![Tasker Screenshot 2](public\Screenshot (495).png)
-![Tasker Screenshot 3](public\Screenshot (496).png)
-![Tasker Screenshot 4](public\Screenshot (497).png)
+![Tasker Screenshot 1](https://res.cloudinary.com/dc7entfb0/image/upload/f_auto,q_auto/v1/Assessment/vdfuuvz180vr0m70d6ud)
+![Tasker Screenshot 2](https://res.cloudinary.com/dc7entfb0/image/upload/f_auto,q_auto/v1/Assessment/rdkxnsjv8f1uqkqsh1la)
+![Tasker Screenshot 3](https://res.cloudinary.com/dc7entfb0/image/upload/f_auto,q_auto/v1/Assessment/tafq16oauqbxwntgugmu)
+![Tasker Screenshot 4](https://res.cloudinary.com/dc7entfb0/image/upload/f_auto,q_auto/v1/Assessment/e1kcr2kajucwhn3wrbm8)
 
 ## Learn More
 
