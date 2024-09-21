@@ -47,7 +47,7 @@ export const signIn = async (req: Request, res: Response) => {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
         const payload = {
-            id: user.id,
+            id: user._id,
             name: user.name,
             email: user.email,
         };
