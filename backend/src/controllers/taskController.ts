@@ -39,6 +39,7 @@ export const createTask = async (req: Request, res: Response): Promise<void> => 
         const user = await User.findById(req.user.id);
         //@ts-ignore
         user?.tasks.push(newTask._id);
+        await user?.save(); // Save the user with the updated task ID
         res.status(201).json(newTask);
     } catch (error) {
         res.status(500).json({ message: 'Server Error', error });
