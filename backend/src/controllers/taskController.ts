@@ -11,6 +11,7 @@ export const getAllTasks = async (req: Request, res: Response): Promise<void> =>
         const tasks = await Task.find({ userId: req.user.id });
         res.status(200).json(tasks);
     } catch (error) {
+
         res.status(500).json({ message: 'Server Error', error });
     }
 };
@@ -22,7 +23,7 @@ export const getTaskById = async (req: Request, res: Response): Promise<void> =>
         const task = await Task.findOne({ _id: req.params.id, userId: req.user.id });
         if (!task) {
             res.status(404).json({ message: 'Task not found' });
-            return;
+            return; 
         }
         res.status(200).json(task);
     } catch (error) {
